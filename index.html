@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MyBooks</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <!-- modal ikhtisar -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <h1>Ikhtisar</h1>
+              <p>Beberapa ringkasan mengenai aplikasi web ini</p>
+              <dl>
+                <dt>Project</dt>
+                <dd>
+                  - Website ini di buat untuk memenuhi tugas akhir dari kelas
+                  DICODING - BELAJAR MEMBUAT FRONT END UNTUK PEMULA
+                </dd>
+                <dd>
+                  - Website ini di buat sebagai bahan praktik materi Pengelolaan
+                  JSON Menggunakan Jquery
+                </dd>
+                <dt>Teknologi</dt>
+                <dd>
+                  - Website ini di buat menggunakan HTML,CSS(Bootstrap),
+                  JQuery(untuk pengolahan data JSON), Vanilla JavaScrip(untuk
+                  pengolahan data Local Storage)
+                </dd>
+                <dt>Bug</dt>
+                <dd>
+                  - Terdapat beberapa bug yang masih ada di website ini, yang
+                  paling menonjol adalah hanya daftar buku teratas yang bisa di
+                  lakukan proses pemindahan dan penghapusan. selain itu,
+                  tampilan untuk website ini masih dekstop friendy (mobile
+                  interface belum tersedia)
+                </dd>
+                <dt>Disclaimer</dt>
+                <dd>
+                  - Mungkin website atau project ini tidak sesuai dengan
+                  kriteria yang di tentukan oleh DICODING, dimana melarang
+                  menggunakan JQuery pada penerapannya, Namun sebagai bahan
+                  Pembelejaran, saya membuat website ini dengan menggabungkan
+                  JQuery dan Vanilla JavaScript (JavaScrip Murni).
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal data buku -->
+    <div class="modal" id="myModaldb">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="container">
+              <h1 class="mb-4">Daftar Buku</h1>
+              <div class="row mb-4" id="daftar-buku"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><h2>MyBooks</h2></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#myModaldb"
+                >Daftar Buku</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+                >Ikhtisar</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- buat dafta buku -->
+    <section>
+      <div class="container mt-4 border rounded p-4 bg-white shadow">
+        <h1 id="daftar-bacaan">Buat Daftar Bacaan</h1>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#pilih-buku"
+              >Pilih Buku</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#buku-baru"
+              >Buku Baru</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane container active" id="pilih-buku">
+            <form id="form-judul" class="mt-4">
+              <div class="form-group">
+                <select class="form-control" id="listBuku"></select>
+                <br />
+              </div>
+              <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            </form>
+            <!-- <div class="card mb-3 p-2 shadow" style="max-width: 100vw"> -->
+            <div class="row" id="buku-pilihan">
+              <form id="form-book">
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="id"
+                    value="null"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="title"
+                    value="null"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="author"
+                    value="null"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="years"
+                    value="null"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="img"
+                    value="null"
+                  />
+                </div>
+                <div class="form-group mb-2">
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    disabled
+                    placeholder=""
+                    id="isComplete"
+                    value="null"
+                  />
+                </div>
+                <!-- <div class="d-grid">
+                  <button type="submit" class="btn btn-primary mt-2 btn-block">
+                    Masukan Ke daftar bacaan
+                  </button>
+                </div> -->
+              </form>
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="tab-pane container fade" id="buku-baru">
+            <form id="form-book-manual">
+              <div class="form-group mb-2">
+                <input
+                  type="hidden"
+                  class="form-control"
+                  disabled
+                  placeholder=""
+                  id="idm"
+                  value="1"
+                />
+              </div>
+              <div class="form-group mb-2">
+                <label for="title">Judul:</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  id="titlem"
+                />
+              </div>
+              <div class="form-group mb-2">
+                <label for="author">Athor:</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  id="authorm"
+                />
+              </div>
+              <div class="form-group mb-2">
+                <label for="years">Tahun Terbit:</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  id="yearsm"
+                />
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  type="hidden"
+                  class="form-control"
+                  disabled
+                  placeholder=""
+                  id="imgm"
+                  value="defaultBook.png"
+                />
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  type="hidden"
+                  class="form-control"
+                  disabled
+                  placeholder=""
+                  id="isCompletem"
+                  value="false"
+                />
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary mt-2 btn-block">
+                  Masukan Ke daftar bacaan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- output -->
+    <section id="daftar-bukumu">
+      <div class="container container mt-4 border rounded p-4 bg-white shadow">
+        <h1>Daftar Bukumu</h1>
+        <input
+          class="form-control mb-2 mt-2"
+          list="datalistOptions"
+          id="cari-buku"
+          placeholder="Type to search..."
+        />
+        <div class="d-grid">
+          <button
+            type="submit"
+            id="hapus-semua-buku"
+            class="btn btn-danger mb-4 btn-block"
+          >
+            Hapus semua daftar buku
+          </button>
+        </div>
+        <div class="row mt-4">
+          <div class="col-6 mt-4">
+            <h3 id="false">Sedang di baca</h3>
+          </div>
+          <div class="col-6 mt-4">
+            <h3 id="true">Selesai di Baca</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <div class="row mt-4">
+        <div class="col-md-12 text-center">
+          <p>
+            MyBooks By Agus Yogandi |
+            <strong>Copyright &copy; 2020</strong>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js" defer="defer"></script>
+  </body>
+</html>

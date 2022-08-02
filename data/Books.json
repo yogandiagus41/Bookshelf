@@ -1,0 +1,53 @@
+{
+    "Book": [
+        {
+            "id": "001",
+            "title": "Logika Pemrograman Python",
+            "author": "Abdul Kadir",
+            "years": 2019,
+            "img": "1-min.png",
+            "isComplete": "false"
+        },
+        {
+            "id": "002",
+            "title": "Python untuk Programmer Pemula",
+            "author": "Jubilee Enterprise",
+            "years": 2019,
+            "img": "2-min.png",
+            "isComplete": "false"
+        },
+        {
+            "id": "003",
+            "title": "Belajar Pemrograman dan Hacking Menggunakan Python",
+            "author": "Wardana",
+            "years": 2019,
+            "img": "3-min.png",
+            "isComplete": "false"
+        },
+        {
+            "id": "004",
+            "title": "Membuat Website PHP dengan CodeIgniter",
+            "author": "Jubilee Enterprise",
+            "years": 2015,
+            "img": "4-min.png",
+            "isComplete": "false"
+        },
+        {
+            "id": "005",
+            "title": "Mengenal Pemrograman Komputer dan Android untuk Pemula",
+            "author": "Jubilee Enterprise",
+            "years": 2017,
+            "img": "5-min.png",
+            "isComplete": "false"
+        },
+        {
+            "id": "006",
+            "title": "Pemrograman Java dari Nol",
+            "author": "Tim EMS",
+            "years": 2015,
+            "img": "6-min.png",
+            "isComplete": "false"
+        }
+     
+    ]
+}
